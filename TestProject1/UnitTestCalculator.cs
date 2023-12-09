@@ -42,7 +42,7 @@ public class Tests
     [TestCase("7 - 2.0", 5)]
     [TestCase("7.0 - 2.0", 5)]
     [TestCase(" - 2.0 + 7.0", 5)]
-    [TestCase(" -2.0 + 7.000", 5)]
+    [TestCase(" -5.0 + 7.000", 2)]
     [Test, Category("Positive scenario")]
     public void ComputesDoubleExpression(string expression, double expected)
     {
