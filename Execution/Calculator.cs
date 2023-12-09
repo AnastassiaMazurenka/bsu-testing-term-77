@@ -67,7 +67,8 @@ public class Calculator
 
             if(token.Type == TokenType.ValueGlobalVar)
             {
-                
+                operands.Push(token);
+
             }
 
             if (suspect == "(")

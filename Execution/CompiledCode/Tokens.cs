@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-//namespace CompiledCode;
+//namespace CompiledCode; 
 
 public enum TokenType
 {
@@ -9,9 +9,9 @@ public enum TokenType
     GotoIf,
     Operation,
     Constant,
-    //ConstantInt,
-    //ConstantDouble,
-    //ConstantString,
+    //ConstantInt, 
+    //ConstantDouble, 
+    //ConstantString, 
     RefGlobalVar,
     RefLocalVar,
     ValueGlobalVar,
@@ -50,33 +50,33 @@ public class TokenConstant<T> : TokenConstantType
 }
 /****/
 
-/****
-public class TokenInt : TokenConstant
-{
-    public readonly int value;
-    public TokenInt(int value) : base(ExpressionType.Int) => this.value = value; 
-}
-
-public class TokenDouble : TokenConstant
-{
-    public readonly double value;
-
-    public TokenDouble(double value) : base(ExpressionType.Double) => this.value = value; 
-}
-
-public class TokenString : TokenConstant
-{
-    public readonly string value;
-
-    public TokenString(string value) : base(ExpressionType.Str) => this.value = value; 
-}
-
-public class TokenBool : TokenConstant
-{
-    public readonly bool value;
-
-    public TokenBool(bool value) : base(ExpressionType.Bool) => this.value = value;
-}
+/**** 
+public class TokenInt : TokenConstant 
+{ 
+    public readonly int value; 
+    public TokenInt(int value) : base(ExpressionType.Int) => this.value = value;  
+} 
+ 
+public class TokenDouble : TokenConstant 
+{ 
+    public readonly double value; 
+ 
+    public TokenDouble(double value) : base(ExpressionType.Double) => this.value = value;  
+} 
+ 
+public class TokenString : TokenConstant 
+{ 
+    public readonly string value; 
+ 
+    public TokenString(string value) : base(ExpressionType.Str) => this.value = value;  
+} 
+ 
+public class TokenBool : TokenConstant 
+{ 
+    public readonly bool value; 
+ 
+    public TokenBool(bool value) : base(ExpressionType.Bool) => this.value = value; 
+} 
 ****/
 
 public class TokenOperation : Token
@@ -89,9 +89,9 @@ public class TokenOperation : Token
     }
 }
 
-public class TokenGoto: Token
+public class TokenGoto : Token
 {
-    //public readonly Token ToToken;
+    //public readonly Token ToToken; 
     public readonly int toToken;
 
     public TokenGoto(TokenType type, int toToken) : base(type)
@@ -116,10 +116,7 @@ public class CompiledCode
 {
     public readonly IList<Token> tokens = new List<Token>();
 
-    public void AddGlodalVarValue(string name, VariableDef def)
-    {
-        this.tokens.Add(new TokenVar(name,def,TokenType.ValueGlobalVar));
-    }
+
 
     public void AddGoto(int toToken)
     {
@@ -129,32 +126,41 @@ public class CompiledCode
     {
         this.tokens.Add(new TokenGoto(TokenType.GotoIf, toToken));
     }
+
     public void AddOperation(string operation)
     {
         this.tokens.Add(new TokenOperation(operation));
     }
 
+    public void AddGlodalVarValue(string name, VariableDef def)
+    {
+        this.tokens.Add(new TokenVar(name, def, TokenType.ValueGlobalVar));
+    }
+
+    public void AddRefGlodalVar(string name, VariableDef def)
+    {
+        this.tokens.Add(new TokenVar(name, def, TokenType.RefGlobalVar));
+    }
     public void AddString(string value)
     {
         this.tokens.Add(new TokenConstant<string>(value, ExpressionType.Str));
-        //this.tokens.Add(new TokenString(value));
+        //this.tokens.Add(new TokenString(value)); 
     }
 
     public void AddInt(int value)
     {
         this.tokens.Add(new TokenConstant<int>(value, ExpressionType.Int));
-        //this.tokens.Add(new TokenInt(value));
+        //this.tokens.Add(new TokenInt(value)); 
     }
 
     public void AddDouble(double value)
     {
         this.tokens.Add(new TokenConstant<double>(value, ExpressionType.Double));
-        //this.tokens.Add(new TokenDouble(value));
+        //this.tokens.Add(new TokenDouble(value)); 
     }
     public void AddBool(bool value)
     {
         this.tokens.Add(new TokenConstant<bool>(value, ExpressionType.Bool));
-        //this.tokens.Add(new TokenBool(value));
+        //this.tokens.Add(new TokenBool(value)); 
     }
 }
-

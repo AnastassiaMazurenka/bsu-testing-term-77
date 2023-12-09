@@ -539,7 +539,7 @@ public class Analyzer
         }
 
         AddVar(name, _funcName);
-
+        //CompiledCode.AddRefGlobalVar(name,)
         return true;
     }
 
